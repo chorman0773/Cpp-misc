@@ -1,6 +1,8 @@
 #ifndef __Math_hpp_2018_05_04_22_45
 #define __Math_hpp_2018_05_04_22_45
 
+class Expression;
+
 class _WrappedExpn{
 private:
 	Expression* expn;
@@ -14,7 +16,24 @@ public:
 	_WrappedExpn& operator=(Expression&);
 	operator Expression&();
 	Expression* operator->();
+	_WrappedExpn operator+(Expression&);
+	_WrappedExpn operator+(double);
+	_WrappedExpn operator-(Expression&);
+	_WrappedExpn operator-(double);
+	_WrappedExpn operator*(Expression&);
+	_WrappedExpn operator*(double);
+	_WrappedExpn operator/(Expression&);
+	_WrappedExpn operator/(double);
+	_WrappedExpn operator^(Expression&);
+	_WrappedExpn operator^(double);
 };
+
+
+_WrappedExpn operator+(double,_WrappedExpn&);
+_WrappedExpn operator-(double,_WrappedExpn&);
+_WrappedExpn operator*(double,_WrappedExpn&);
+_WrappedExpn operator/(double,_WrappedExpn&);
+_WrappedExpn operator^(double,_WrappedExpn&);
 
 class Expression{
 public:
@@ -32,6 +51,11 @@ public:
 	_WrappedExpn operator/(double);
 	_WrappedExpn operator^(Expression&);
 	_WrappedExpn operator^(double);
+	_WrappedExpn operator+(_WrappedExpn&);
+	_WrappedExpn operator-(_WrappedExpn&);
+	_WrappedExpn operator*(_WrappedExpn&);
+	_WrappedExpn operator/(_WrappedExpn&);
+	_WrappedExpn operator^(_WrappedExpn&);
 };
 
 _WrappedExpn operator+(double,Expression&);
