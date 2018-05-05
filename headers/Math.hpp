@@ -8,6 +8,7 @@ private:
 	Expression* expn;
 public:
 	_WrappedExpn(Expression&);
+	_WrappedExpn(Expression&&);
 	_WrappedExpn(const _WrappedExpn&);
 	_WrappedExpn(_WrappedExpn&&);
 	~_WrappedExpn();
