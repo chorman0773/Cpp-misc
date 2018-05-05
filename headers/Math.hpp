@@ -36,6 +36,12 @@ _WrappedExpn operator*(double,_WrappedExpn&);
 _WrappedExpn operator/(double,_WrappedExpn&);
 _WrappedExpn operator^(double,_WrappedExpn&);
 
+_WrappedExpn operator+(double,_WrappedExpn&&);
+_WrappedExpn operator-(double,_WrappedExpn&&);
+_WrappedExpn operator*(double,_WrappedExpn&&);
+_WrappedExpn operator/(double,_WrappedExpn&&);
+_WrappedExpn operator^(double,_WrappedExpn&&);
+
 class Expression{
 public:
 	virtual double eval(double)=0;
@@ -57,6 +63,11 @@ public:
 	_WrappedExpn operator*(_WrappedExpn&);
 	_WrappedExpn operator/(_WrappedExpn&);
 	_WrappedExpn operator^(_WrappedExpn&);
+	_WrappedExpn operator+(_WrappedExpn&&);
+	_WrappedExpn operator-(_WrappedExpn&&);
+	_WrappedExpn operator*(_WrappedExpn&&);
+	_WrappedExpn operator/(_WrappedExpn&&);
+	_WrappedExpn operator^(_WrappedExpn&&);
 };
 
 _WrappedExpn operator+(double,Expression&);
