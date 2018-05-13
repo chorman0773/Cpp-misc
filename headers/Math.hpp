@@ -1,16 +1,22 @@
 #ifndef __Math_hpp_2018_05_04_22_45
 #define __Math_hpp_2018_05_04_22_45
 
+#include <utility>
+
 class Expression;
 
 class _WrappedExpn{
 private:
 	Expression* expn;
 public:
-	_WrappedExpn(Expression&);
-	_WrappedExpn(Expression&&);
+	template<typename T> _WrappedExpn(const T& copy){
+		expn = new T(copy);	
+	}
 	_WrappedExpn(const _WrappedExpn&);
 	_WrappedExpn(_WrappedExpn&&);
+	template<typename T,typename... Args> _WrappedExpn(Args... args){
+		expn = new T(std::forward(args)...);
+	}
 	~_WrappedExpn();
 	_WrappedExpn& operator=(const _WrappedExpn&);
 	_WrappedExpn& operator=(_WrappedExpn&);
