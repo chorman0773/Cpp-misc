@@ -65,3 +65,36 @@ public:
    return first->eval(val)/second->eval(val); 
   }
 };
+
+
+class _ExpExpn final:public Expression{
+	_WrappedExpn base;
+	_WrappedExpn power;
+public:
+	_ExpExpn(_WrappedExpn l,_WrappedExpn r):base(l),power(r){}
+	_WrappedExpn derivativeOf(){
+		return (base^power)*(power/base+ln(base));	
+	}
+	bool isConstant(){
+		return base->isConstant()&&power->isConstant();	
+	}
+	double eval(double val){
+		return pow(base->eval(val),power->eval(val));
+	}
+};
+
+class ChainedExpression final:public Expression{
+	_WrappedExpn outer;
+	_WrappedExpn inner;
+public:
+	ChainedExpression(_WrappedExpn l,_WrappedExpn r):outer(l),inner(r){}
+	_WrappedExpn derivativeOf(){
+		return d(outer)->callWith(inner)*d(inner);
+	}
+	bool isConstant(){
+		return outer->isConstant();	
+	}
+	double eval(double val){
+		return outer->eval(inner->eval(val));	
+	}
+};
