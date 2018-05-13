@@ -109,46 +109,6 @@ public:
 	double eval(double);
 };
 
-class _AddExpn final:public Expression{
-	_WrappedExpn first;
-	_WrappedExpn second;
-public:
-	_AddExpn(Expression&,Expression&);
-	_WrappedExpn derivativeOf();
-	bool isConstant();
-	double eval(double);
-};
-
-class _SubExpn final:public Expression{
-	_WrappedExpn first;
-	_WrappedExpn second;
-public:
-	_SubExpn(Expression&,Expression&);
-	_WrappedExpn derivativeOf();
-	bool isConstant();
-	double eval(double);
-};
-
-class _MulExpn final:public Expression{
-	_WrappedExpn first;
-	_WrappedExpn second;
-public:
-	_MulExpn(Expression&,Expression&);
-	_WrappedExpn derivativeOf();
-	bool isConstant();
-	double eval(double);
-};
-
-class _DivExpn final:public Expression{
-	_WrappedExpn first;
-	_WrappedExpn second;
-public:
-	_DivExpn(Expression&,Expression&);
-	_WrappedExpn derivativeOf();
-	bool isConstant();
-	double eval(double);
-};
-
 class sqrt final:public Expression{
 	_WrappedExpn inner;
 public:
