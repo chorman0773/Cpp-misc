@@ -136,25 +136,6 @@ public:
 	double eval(double);
 };
 
-class _ExpExpn final:public Expression{
-	_WrappedExpn base;
-	_WrappedExpn power;
-public:
-	_ExpExpn(Expression&,Expression&);
-	_WrappedExpn derivativeOf();
-	bool isConstant();
-	double eval(double);
-};
-
-class ChainedExpression final:public Expression{
-	_WrappedExpn outer;
-	_WrappedExpn inner;
-public:
-	ChainedExpression(Expression&,Expression&);
-	_WrappedExpn derivativeOf();
-	bool isConstant();
-	double eval(double);
-};
 
 class Function final:public Expression{
 	_WrappedExpn expn;
