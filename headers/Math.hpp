@@ -112,7 +112,7 @@ public:
 class sqrt final:public Expression{
 	_WrappedExpn inner;
 public:
-	sqrt(Expression&);
+	sqrt(_WrappedExpn);
 	_WrappedExpn derivativeOf();
 	bool isConstant();
 	double eval(double);
@@ -121,16 +121,16 @@ public:
 template<double d> class log final:public Expression{
 	_WrappedExpn inner;
 public:
-	log(Expression&);
+	log(_WrappedExpn);
 	_WrappedExpn derivativeOf();
 	bool isConstant();
 	double eval(double);
 }
 
-template<> class log<2.71828182845904523536028747135266249775724709369995>{
+template<> class log<2.71828182845904523536028747135266249775724709369995>:public Expression{
 	_WrappedExpn inner;
 public:
-	log(Expression&);
+	log(_WrappedExpn);
 	_WrappedExpn derivativeOf();
 	bool isConstant();
 	double eval(double);
@@ -141,9 +141,9 @@ class Function final:public Expression{
 	_WrappedExpn expn;
 public:
 	Function();
-	Function& operator=(Expression&);
+	Function& operator=(_WrappedExpn);
 	Function& operator()(Variable&);
-	Function& operator()(Expression&);
+	_WrappedExpn operator()(Function&);
 	double operator()(double);
 	_WrappedExpn derivativeOf();
 	bool isConstant();
@@ -155,6 +155,6 @@ using ln = log<2.71828182845904523536028747135266249775724709369995>;
 
 ConstantExpression e(2.71828182845904523536028747135266249775724709369995);
 ConstantExpression π(3.14159265358979323846264338327950288419716939937510);
-_WrappedExpn d(Expression&);
+_WrappedExpn d(_WrappedExpn);
 
 #endif
