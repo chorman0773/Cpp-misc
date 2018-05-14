@@ -117,8 +117,16 @@ public:
 	bool isConstant();
 	double eval(double);
 };
+class log final:public Expression{
+	_WrappedExpn inner;
+public:
+	log(_WrappedExpn);
+	_WrappedExpn derivativeOf();
+	bool isConstant();
+	double eval(double);
+};
 
-template<double d> class log final:public Expression{
+class log2 final:public Expression{
 	_WrappedExpn inner;
 public:
 	log(_WrappedExpn);
@@ -127,14 +135,16 @@ public:
 	double eval(double);
 }
 
-template<> class log<2.71828182845904523536028747135266249775724709369995>:public Expression{
+class ln final:public Expression{
 	_WrappedExpn inner;
 public:
 	log(_WrappedExpn);
 	_WrappedExpn derivativeOf();
 	bool isConstant();
 	double eval(double);
-};
+}
+
+
 
 
 class Function final:public Expression{
